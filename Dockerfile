@@ -10,7 +10,6 @@ COPY ${VIVADO_FILE} ${TEMP_PATH}
 COPY ${PETALINUX_FILE} ${TEMP_PATH}
 COPY install_config.txt ${TEMP_PATH}
 COPY accept-eula.sh ${TEMP_PATH} 
-COPY sed.sh ${TEMP_PATH} 
 
 RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q sudo x11-apps \
     libgtk2.0-0 dpkg-dev python3-pip libxtst6 default-jre xorg libxrender-dev libxtst-dev \
@@ -43,7 +42,6 @@ WORKDIR /home/xilinx
 # Run the petalinux install
 RUN sudo chmod a+rx ${TEMP_PATH}${PETALINUX_FILE} \
     && sudo chmod a+rx ${TEMP_PATH}accept-eula.sh \
-    && sudo chmod a+rx ${TEMP_PATH}sed.sh \
     && sudo mkdir -p /opt/xilinx \
     && sudo chown xilinx.xilinx /opt/xilinx \
     && sudo chown xilinx.xilinx -R ${TEMP_PATH} \
