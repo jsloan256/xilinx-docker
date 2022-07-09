@@ -15,7 +15,7 @@ docker build -t xilinx:2022.1 .
 
 # Run the Docker Image
 ```
-docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v /home/john_sloan/dev/:/home/xilinx/dev/ -v $XAUTH:/root/.Xauthority --name xilinx2022.1 xilinx:2022.1
+docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v /home/jsloan/dev/:/home/xilinx/dev/ -v $XAUTH:/root/.Xauthority --name xilinx2022.1 xilinx:2022.1
 ```
 
 # Connect to an existing Docker Image

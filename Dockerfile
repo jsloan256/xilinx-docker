@@ -15,7 +15,7 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q sudo
     libgtk2.0-0 dpkg-dev python3-pip libxtst6 default-jre xorg libxrender-dev libxtst-dev \
     twm wget pv vim language-pack-en-base git tig gcc-multilib gzip unzip expect gawk \
     xterm autoconf libtool texinfo libncurses5-dev iproute2 net-tools libssl-dev flex bison \
-    libselinux1 screen pax python3-pexpect python3-git python3-jinja2 zlib1g-dev rsync
+    libselinux1 screen pax python3-pexpect python3-git python3-jinja2 zlib1g-dev rsync libswt-gtk-4-jni
 
 RUN dpkg --add-architecture i386 &&  apt-get update &&  \
       DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
@@ -51,3 +51,9 @@ RUN sudo chmod a+rx ${TEMP_PATH}${PETALINUX_FILE} \
 
 # Delete temp files
 RUN sudo rm -rf ${TEMP_PATH}
+
+# Add Vivado and Petalinux tools to the path
+RUN echo "" >> /home/xilinx/.bashrc \
+    && echo "source /opt/Xilinx/Vivado/2022.1/settings64.sh" >> /home/xilinx/.bashrc \
+    && echo "source /opt/xilinx/petalinux/settings.sh" >> /home/xilinx/.bashrc \
+    && echo "VITIS_SKIP_PRELAUNCH_CHECK=true"
