@@ -52,6 +52,9 @@ RUN sudo chmod a+rx ${TEMP_PATH}${PETALINUX_FILE} \
 # Delete temp files
 RUN sudo rm -rf ${TEMP_PATH}
 
+# Set console to bash
+Run sudo ln -sf /bin/bash /bin/sh
+
 # Add Vivado and Petalinux tools to the path
 RUN echo "" >> /home/xilinx/.bashrc \
     && echo "source /opt/Xilinx/Vivado/2022.1/settings64.sh" >> /home/xilinx/.bashrc \
