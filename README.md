@@ -1,5 +1,5 @@
 # Description
-This Docker image runs Ubuntu 20.04 and includes
+This Docker image runs Ubuntu 18.04 and includes
 1. Xilinx Vivado 2022.1
 2. Xilinx petalinux 2022.1
 
@@ -15,10 +15,15 @@ docker build -t xilinx:2022.1 .
 
 # Run the Docker Image
 ```
-docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v /home/jsloan/dev/:/home/xilinx/dev/ -v $XAUTH:/root/.Xauthority --name xilinx2022.1 xilinx:2022.1
+docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v $HOME/dev/:/home/xilinx/dev/ -v $XAUTH:/root/.Xauthority --name xilinx2022.1 xilinx:2022.1
 ```
 
 # Connect to an existing Docker Image
 ```
 docker exec -e "TERM=xterm-256color" -ti xilinx /bin/bash
+```
+
+# Export (save) Docker Image to file
+```
+docker save xilinx:2022.1 | gzip > xilinx_2022.1.tar.gz
 ```
