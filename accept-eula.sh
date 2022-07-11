@@ -23,12 +23,6 @@ expect "Press Enter to display the license agreements"
 send "\r"
 set timeout 2
 
-expect "Sections 10 (Disclaimers)"
-send "\r"
-
-expect "(Governing Law) of this Agreement"
-send "q"
-
 expect {
     "* >*" {send "y\r"}
     timeout { send "q"; sleep 1; exp_continue}
@@ -42,6 +36,7 @@ expect {
     timeout { send "q"; sleep 1; exp_continue}
 }
 
-### set timeout -1
-### expect "PetaLinux SDK has been installed"
+set timeout -1
+expect "INFO: Checking PetaLinux installer integrity..."
+expect "INFO: PetaLinux SDK has been installed"
 #interact
