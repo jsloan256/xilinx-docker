@@ -11,6 +11,7 @@ RUN apt-get update \
        twm wget pv vim language-pack-en-base git tig gcc-multilib gzip unzip expect gawk \
        xterm autoconf libtool texinfo libncurses5-dev iproute2 net-tools libssl-dev flex bison \
        libselinux1 screen pax python3-pexpect python3-git python3-jinja2 zlib1g-dev rsync libswt-gtk-4-jni \
+       curl gtkterm ocl-icd-libopencl1 opencl-headers libgmp-dev g++-multilib zip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN dpkg --add-architecture i386 &&  apt-get update &&  \
