@@ -11,7 +11,7 @@ RUN apt-get update \
        twm wget pv vim language-pack-en-base git tig gcc-multilib gzip unzip expect gawk \
        xterm autoconf libtool texinfo libncurses5-dev iproute2 net-tools libssl-dev flex bison \
        libselinux1 screen pax python3-pexpect python3-git python3-jinja2 zlib1g-dev rsync libswt-gtk-4-jni \
-       curl gtkterm ocl-icd-libopencl1 opencl-headers libgmp-dev g++-multilib zip \
+       curl gtkterm ocl-icd-libopencl1 opencl-headers libgmp-dev g++-multilib zip udev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN dpkg --add-architecture i386 &&  apt-get update &&  \
@@ -41,6 +41,10 @@ RUN cat ${VIVADO_FILE} | tar zx --strip-components=1 \
 USER xilinx
 ENV HOME /home/xilinx
 ENV LANG en_US.UTF-8
+
+RUN sudo adduser xilinx dialout
+RUN cd /opt/Xilinx/Vivado/2022.1/data/xicom/cable_drivers/lin64/install_script/install_drivers \
+    && sudo ./install_drivers
 
 # Install petalinux
 WORKDIR /petalinux_install_files
