@@ -15,7 +15,7 @@ docker build -t xilinx:2022.1 .
 
 # Run the Docker Image
 ```
-docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v $HOME/dev/:/home/xilinx/dev/ -v $XAUTH:/root/.Xauthority --name xilinx2022.1 xilinx:2022.1
+docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v $HOME/dev/:/home/xilinx/dev/ -v $HOME/.Xilinx:/home/xilinx/.Xilinx -e XILINXD_LICENSE_FILE=$XILINXD_LICENSE_FILE -v $HOME/.ssh:/home/xilinx/.ssh:ro --name xilinx2022.1 xilinx:2022.1
 ```
 
 # Connect to an existing Docker Image
