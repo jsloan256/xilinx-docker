@@ -9,21 +9,34 @@ The following files must be downloaded and placed in this folder before building
 2. [petalinux-v2022.1-04191534-installer.run](https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-v2022.1-04191534-installer.run)
 
 # Build the Docker Image
-```
+```console
 docker build -t xilinx:2022.1 .
 ```
 
-# Run the Docker Image
+Building the image creates a runt image (an image with no REPOSITORY name). Delete it manually after building the docker image. The following is an example from a recent build (note that the IMAGE ID will vary):
+```console
+$ docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+xilinx       2022.1    d08b116aa0e8   14 minutes ago   131GB
+<none>       <none>    dd3702eb7c24   43 minutes ago   213GB
+xilinx       2020.2    736aa596b630   2 weeks ago      89.9GB
+ubuntu       18.04     c6ad7e71ba7d   3 months ago     63.2MB
+$ docker image rm dd3702eb7c24
+
 ```
+
+
+# Run the Docker Image
+```console
 docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v $HOME/dev/:/home/xilinx/dev/ -v $HOME/.Xilinx:/home/xilinx/.Xilinx -e XILINXD_LICENSE_FILE=$XILINXD_LICENSE_FILE -v $HOME/.ssh:/home/xilinx/.ssh:ro --name xilinx2022.1 xilinx:2022.1
 ```
 
 # Connect to an existing Docker Image
-```
+```console
 docker exec -e "TERM=xterm-256color" -ti xilinx /bin/bash
 ```
 
 # Export (save) Docker Image to file
-```
+```console
 docker save xilinx:2022.1 | gzip > xilinx_2022.1.tar.gz
 ```
