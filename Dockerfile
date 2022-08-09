@@ -11,7 +11,7 @@ RUN apt-get update \
        twm wget pv vim language-pack-en-base git tig gcc-multilib gzip unzip expect gawk \
        xterm autoconf libtool texinfo libncurses5-dev iproute2 net-tools libssl-dev flex bison \
        libselinux1 screen pax python3-pexpect python3-git python3-jinja2 zlib1g-dev rsync libswt-gtk-4-jni \
-       curl gtkterm ocl-icd-libopencl1 opencl-headers libgmp-dev g++-multilib zip \
+       curl gtkterm ocl-icd-libopencl1 opencl-headers g++-multilib zip bc \
     && rm -rf /var/lib/apt/lists/*
 
 RUN dpkg --add-architecture i386 &&  apt-get update &&  \
@@ -67,7 +67,8 @@ RUN sudo ln -sf /bin/bash /bin/sh
 RUN echo "" >> /home/xilinx/.bashrc \
     && echo "source /opt/Xilinx/Vivado/2020.2/settings64.sh" >> /home/xilinx/.bashrc \
     && echo "source /opt/xilinx/petalinux/settings.sh" >> /home/xilinx/.bashrc \
-    && echo "export VITIS_SKIP_PRELAUNCH_CHECK=true" >> /home/xilinx/.bashrc
+    && echo "export VITIS_SKIP_PRELAUNCH_CHECK=true" >> /home/xilinx/.bashrc \
+    && echo "cd ~" >> /home/xilinx/.bashrc
 
 FROM scratch
 COPY --from=needs-squashing / /
