@@ -1,12 +1,14 @@
 # Description
 This Docker image runs Ubuntu 18.04 and includes
-1. Xilinx Vivado 2022.1
-2. Xilinx petalinux 2022.1
+1. Xilinx Vivado 2020.2
+2. Xilinx Vitis HLS y2k22 patch
+3. Xilinx petalinux 2020.2
 
 # Required Files
 The following files must be downloaded and placed in this folder before building the docker image
-1. [Xilinx_Unified_2022.1_0420_0327.tar.gz](https://www.xilinx.com/member/forms/download/xef.html?filename=Xilinx_Unified_2022.1_0420_0327.tar.gz)
-2. [petalinux-v2022.1-04191534-installer.run](https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-v2022.1-04191534-installer.run)
+1. [Xilinx_Unified_2020.2_1118_1232.tar.gz](https://www.xilinx.com/member/forms/download/xef.html?filename=Xilinx_Unified_2020.2_1118_1232.tar.gz)
+2. [y2k22_patch-1.2.zip](https://support.xilinx.com/s/article/76960?language=en_US)
+3. [petalinux-v2020.2-final-installer.run](https://www.xilinx.com/member/forms/download/xef.html?filename=petalinux-v2020.2-final-installer.run)
 
 # Build the Docker Image
 ```console
@@ -22,9 +24,7 @@ xilinx       2022.1    d08b116aa0e8   14 minutes ago   131GB
 xilinx       2020.2    736aa596b630   2 weeks ago      89.9GB
 ubuntu       18.04     c6ad7e71ba7d   3 months ago     63.2MB
 $ docker image rm dd3702eb7c24
-
 ```
-
 
 # Run the Docker Image
 ```console
