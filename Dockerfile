@@ -11,7 +11,7 @@ RUN apt-get update \
        twm wget pv vim language-pack-en-base git tig gcc-multilib gzip unzip expect gawk \
        xterm autoconf libtool texinfo libncurses5-dev iproute2 net-tools libssl-dev flex bison \
        libselinux1 screen pax python3-pexpect python3-git python3-jinja2 zlib1g-dev rsync libswt-gtk-4-jni \
-       curl gtkterm ocl-icd-libopencl1 opencl-headers g++-multilib zip udev bc\
+       curl gtkterm ocl-icd-libopencl1 opencl-headers g++-multilib zip udev bc libidn11-dev iputils-ping \
     && rm -rf /var/lib/apt/lists/*
 
 RUN dpkg --add-architecture i386 &&  apt-get update &&  \
@@ -22,6 +22,8 @@ RUN dpkg --add-architecture i386 &&  apt-get update &&  \
 RUN apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install pyfdt
 
 RUN adduser --disabled-password --gecos '' xilinx && \
   usermod -aG sudo xilinx && \
@@ -62,6 +64,7 @@ RUN sudo ln -sf /bin/bash /bin/sh
 
 # Add Vivado and Petalinux tools to the path
 RUN echo "" >> /home/xilinx/.bashrc \
+    && echo "export PATH=$HOME/bin:$PATH" >> /home/xilinx/.bashrc \
     && echo "source /opt/Xilinx/Vivado/2022.1/settings64.sh" >> /home/xilinx/.bashrc \
     && echo "source /opt/xilinx/petalinux/settings.sh" >> /home/xilinx/.bashrc \
     && echo "export VITIS_SKIP_PRELAUNCH_CHECK=true" >> /home/xilinx/.bashrc \

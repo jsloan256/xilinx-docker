@@ -25,7 +25,6 @@ $ docker image rm dd3702eb7c24
 
 ```
 
-
 # Run the Docker Image
 ```console
 docker run -ti -e "TERM=xterm-256color" --network=host -e DISPLAY=$DISPLAY -v $HOME/dev/:/home/xilinx/dev/ -v $HOME/.Xilinx:/home/xilinx/.Xilinx -e XILINXD_LICENSE_FILE=$XILINXD_LICENSE_FILE -v $HOME/.ssh:/home/xilinx/.ssh:ro --name xilinx2022.1 xilinx:2022.1
